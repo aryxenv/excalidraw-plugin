@@ -9,7 +9,6 @@ A plugin that adds Excalidraw architecture diagramming capabilities to your AI c
 | **Diagrammer Agent**          | Researches your codebase, then creates accurate, grounded diagrams            |
 | **Excalidraw Diagrams Skill** | Step-by-step procedures for creating, exporting, and embedding diagrams       |
 | **Excalidraw MCP Server**     | Tools for programmatic diagram creation (`create_view`, `export_scene`, etc.) |
-| **SVG-to-PNG Export**         | Dark-mode PNG conversion via `@resvg/resvg-js`                                |
 
 ## Installation
 
@@ -31,33 +30,24 @@ After installation:
 
 - The **diagrammer** agent is available via `/agent`
 - The **excalidraw-diagrams** skill is auto-loaded
-- The **excalidraw** MCP server tools are available
+- The **excalidraw** MCP server tools are available (auto-downloaded via `npx`)
 - The **diagram** command is available
 
-> **Note:** Plugin install provides the agent, skill, MCP server, and command. The MCP server can export diagrams as PNG directly via `export_scene format="png"`. The optional `excalidraw/scripts/svg-to-png.js` dark-mode export script is available when cloning the full repo (see Manual Setup).
+> **Note:** The MCP server (`excalidraw-mcp-server`) is downloaded automatically via `npx` — no manual npm install needed. Restart the CLI after installing the plugin.
 
 ### Claude Code
 
-Clone or add this repository to your project. Claude Code automatically detects:
+Add the MCP server and instructions to your project:
 
-- `CLAUDE.md` — project instructions with diagramming guidance
-- `.mcp.json` — Excalidraw MCP server configuration
-- `.claude/commands/diagram.md` — slash command (`/project:diagram`)
+1. **MCP config** — Copy `.mcp.json` to your project root
+2. **Instructions** — Copy `CLAUDE.md` to your project root
+3. **Slash command** — Copy `.claude/commands/diagram.md`
 
 Then use it:
 
 ```
 /project:diagram system architecture showing all services and data flows
 ```
-
-### Manual Setup (Any Tool)
-
-Copy the relevant files into your project:
-
-1. **MCP config** — Copy `.mcp.json` to your project root
-2. **Agent** — Copy `.github/agents/diagrammer.agent.md`
-3. **Skill** — Copy `.github/skills/excalidraw-diagrams/` directory
-4. **Export tools** _(optional)_ — Copy the `excalidraw/` directory, then run `cd excalidraw && npm install` for custom dark-mode PNG export
 
 ## Usage
 
@@ -88,11 +78,8 @@ If you prefer to drive the MCP tools directly:
 # Create a diagram with all elements at once
 excalidraw-create_view  elements=[...]
 
-# Export as SVG
-excalidraw-export_scene  format="svg"
-
-# Convert to dark-mode PNG
-cd excalidraw && node scripts/svg-to-png.js diagrams/export/my-diagram.svg
+# Export as PNG
+excalidraw-export_scene  format="png"
 ```
 
 ## File Structure
@@ -108,10 +95,6 @@ cd excalidraw && node scripts/svg-to-png.js diagrams/export/my-diagram.svg
 │   └── excalidraw-diagrams/
 │       └── SKILL.md
 ├── .vscode/mcp.json               # VS Code MCP config
-└── excalidraw/
-    ├── package.json               # Export dependencies
-    ├── scripts/svg-to-png.js      # SVG → PNG converter
-    └── diagrams/                  # Diagram source & exports
 ```
 
 ## Cross-Tool Compatibility

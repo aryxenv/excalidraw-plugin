@@ -16,17 +16,6 @@ The Excalidraw MCP server exposes tools for creating and manipulating diagrams p
 - **`query_elements` / `get_resource`** — Inspect current state
 - **`create_from_mermaid`** — Convert Mermaid syntax to Excalidraw
 
-### SVG-to-PNG Export Pipeline
-
-After exporting SVG from the MCP server, convert to a dark-mode PNG:
-
-```bash
-cd excalidraw && npm install
-node scripts/svg-to-png.js diagrams/export/<name>.svg
-```
-
-This produces a 1600px-wide dark-mode PNG (`#0d1117` background) in the same directory.
-
 ### Diagrammer Agent
 
 A specialized agent (`diagrammer`) that researches the codebase before drawing. It follows a 5-phase workflow: Research → Plan → Create → Confirm → Export. Every element in the diagram is grounded in real code — it never guesses.
@@ -43,14 +32,3 @@ The `excalidraw-diagrams` skill provides step-by-step procedures for creating, e
 - **Color-code by category** — Blue (`#1971c2`) for APIs, Green (`#2f9e44`) for data, Orange (`#e67700`) for AI, Purple (`#6741d9`) for orchestration, Gray (`#868e96`) for infrastructure
 - **Fill shapes** — never leave outlines-only on dark backgrounds
 - **40px minimum spacing** between elements
-
-## Workspace Layout
-
-```
-excalidraw/
-├── diagrams/                # .excalidraw source files
-│   └── export/              # Exported PNGs (+ intermediate SVGs)
-├── scripts/
-│   └── svg-to-png.js        # SVG → dark-mode PNG
-└── package.json             # @resvg/resvg-js dependency
-```

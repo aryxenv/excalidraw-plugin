@@ -62,10 +62,9 @@ Before exporting, present the diagram for review:
 
 Once confirmed, follow the `excalidraw-diagrams` skill procedure for export:
 
-1. Export SVG from MCP → save to `excalidraw/diagrams/export/<name>.svg`
-2. Convert SVG to PNG via the export script
-3. Save the `.excalidraw` source file for future editing
-4. Embed the PNG in the target documentation file using a relative path
+1. Export PNG directly from MCP via `export_scene format="png"`
+2. Save the `.excalidraw` source file for future editing
+3. Embed the PNG in the target documentation file using a relative path
 
 # Constraints
 

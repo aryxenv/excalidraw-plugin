@@ -16,14 +16,7 @@ Create architecture and flow diagrams via the Excalidraw MCP server, export them
 
 ## Workspace Layout
 
-```
-excalidraw/
-├── diagrams/                # .excalidraw source files
-│   └── export/              # Exported PNGs (+ intermediate SVGs)
-├── scripts/
-│   └── svg-to-png.js        # SVG → dark-mode PNG via @resvg/resvg-js
-└── package.json             # Has @resvg/resvg-js dependency
-```
+Diagrams are exported directly to the user's project using the MCP server's built-in export. No local dependencies are needed.
 
 ## MCP Server
 
@@ -134,36 +127,21 @@ The point of using Excalidraw is visual clarity and polish — **do not produce 
 - ❌ **Cramped spacing** — give elements room to breathe (40px minimum gap)
 - ❌ **Thin outlines on dark backgrounds** — use filled shapes with solid colours
 
-### Step 3 — Export SVG from MCP
+### Step 3 — Export PNG from MCP
 
-Use the MCP to get an SVG of the diagram:
+Use the MCP to export the diagram directly as PNG:
+
+```
+mcp_excalidraw_export_scene  format="png"  padding=40
+```
+
+Save the PNG output to `diagrams/<name>.png` in the user's project. You can also export as SVG if needed:
 
 ```
 mcp_excalidraw_export_scene  format="svg"  padding=40
 ```
 
-> **Why SVG from MCP?** The MCP's SVG renderer correctly handles all element types including text. This is the only reliable export path.
-
-Save the SVG output to `excalidraw/diagrams/export/<name>.svg`. You'll need to write the SVG string to a file using a shell command or `create` tool.
-
-### Step 4 — Convert SVG to PNG
-
-After saving the SVG, convert it to a dark-mode PNG:
-
-```bash
-cd excalidraw && npm install   # ensure @resvg/resvg-js is installed
-node scripts/svg-to-png.js diagrams/export/<name>.svg
-```
-
-This produces a 1600px-wide dark-mode PNG at `excalidraw/diagrams/export/<name>.png` (same directory as the SVG).
-
-To specify a custom output path:
-
-```bash
-node scripts/svg-to-png.js diagrams/export/<name>.svg diagrams/export/custom-name.png
-```
-
-### Step 5 — Save the .excalidraw Source
+### Step 4 — Save the .excalidraw Source
 
 Construct and save the `.excalidraw` source file so the diagram can be edited later:
 
@@ -184,40 +162,28 @@ Construct and save the `.excalidraw` source file so the diagram can be edited la
 }
 ```
 
-3. Save to `excalidraw/diagrams/<name>.excalidraw`.
+3. Save to `diagrams/<name>.excalidraw`.
 
 > **Tip:** Use Python or Node.js to construct and write the JSON. Each element needs `id`, `type`, `x`, `y` at minimum. The MCP elements already have all required fields.
 
-### Step 6 — Embed in Documentation
+### Step 5 — Embed in Documentation
 
 Reference the exported PNG using a **relative path** from the doc's location:
 
 ```markdown
-<!-- From project root README.md -->
-
-![Architecture](excalidraw/diagrams/export/architecture.png)
-
-<!-- From client/README.md -->
-
-![Architecture](../excalidraw/diagrams/export/architecture.png)
-
-<!-- From server/README.md -->
-
-![Architecture](../excalidraw/diagrams/export/architecture.png)
+![Architecture](diagrams/architecture.png)
 ```
-
-Always use the `excalidraw/diagrams/export/` path — never link to `.excalidraw` source files in rendered docs.
 
 ## Updating an Existing Diagram
 
 1. Query existing elements with `mcp_excalidraw_query_elements`.
 2. Modify with `mcp_excalidraw_update_element` or `mcp_excalidraw_delete_element`.
-3. Re-export SVG (Step 3) and re-convert to PNG (Step 4) — overwrites the previous files.
+3. Re-export PNG (Step 3) — overwrites the previous file.
 4. No doc changes needed if the filename stays the same.
 
 ## Conventions
 
 - **File naming**: Lowercase kebab-case (e.g., `data-flow.excalidraw`, `tag-lifecycle.excalidraw`)
 - **Roughness**: Use `0` for clean technical diagrams, `1` for informal sketches
-- **Theme**: Export uses dark background (`#0d1117`) — design with bright fills and light text
+- **Theme**: Design with bright fills and light text for visibility
 - **One diagram per file** — don't combine unrelated visuals
