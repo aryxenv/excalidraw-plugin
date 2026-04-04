@@ -27,13 +27,15 @@ excalidraw/
 
 ## MCP Server
 
-The Excalidraw MCP server is configured in `.vscode/mcp.json`:
+The Excalidraw MCP server is configured in `.mcp.json`:
 
 ```json
 {
   "excalidraw": {
-    "command": "npx.cmd",
-    "args": ["-y", "excalidraw-mcp-server"]
+    "type": "stdio",
+    "command": "npx",
+    "args": ["-y", "excalidraw-mcp-server"],
+    "tools": ["*"]
   }
 }
 ```

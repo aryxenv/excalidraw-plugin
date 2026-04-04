@@ -3,7 +3,6 @@ name: diagrammer
 description: "Researches codebase and requirements to produce accurate, comprehensive Excalidraw architecture diagrams. Use when: create diagram, architecture diagram, visualize system, draw data flow, illustrate components, diagram requirements, accurate diagram, document architecture."
 tools: [read, search, edit, execute, web, "excalidraw/*"]
 argument-hint: "What should the diagram show? (e.g., 'system architecture', 'data flow from frontend to Cosmos DB')"
-model: Claude Opus 4.6 (1M context)(Internal only) (copilot)
 ---
 
 # Role
