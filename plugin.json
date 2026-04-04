@@ -1,9 +1,15 @@
 {
-  "name": "excalidraw-diagrams",
+  "name": "excalidraw-plugin",
   "description": "Create, update, and export architecture diagrams using Excalidraw MCP. Includes a diagrammer agent, excalidraw-diagrams skill, and MCP server configuration.",
   "version": "1.0.0",
   "license": "MIT",
-  "keywords": ["excalidraw", "diagrams", "architecture", "visualization", "mcp"],
+  "keywords": [
+    "excalidraw",
+    "diagrams",
+    "architecture",
+    "visualization",
+    "mcp"
+  ],
   "agents": ".github/agents/",
   "skills": [".github/skills/"],
   "commands": ".claude/commands/",
