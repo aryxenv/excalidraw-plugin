@@ -102,12 +102,11 @@ cd excalidraw && node scripts/svg-to-png.js diagrams/export/my-diagram.svg
 ├── .mcp.json                      # MCP server config (Copilot CLI + Claude Code)
 ├── CLAUDE.md                      # Instructions (Copilot CLI + Claude Code)
 ├── .claude/commands/diagram.md    # Claude Code slash command
-├── .github/
-│   ├── agents/
-│   │   └── diagrammer.agent.md    # Diagrammer agent definition
-│   └── skills/
-│       └── excalidraw-diagrams/
-│           └── SKILL.md           # Skill procedures & guidelines
+├── agents/                        # Agent definitions
+│   └── diagrammer.agent.md
+├── skills/                        # Skill definitions
+│   └── excalidraw-diagrams/
+│       └── SKILL.md
 ├── .vscode/mcp.json               # VS Code MCP config
 └── excalidraw/
     ├── package.json               # Export dependencies
@@ -124,8 +123,8 @@ This plugin works across tools because both ecosystems share conventions:
 | `plugin.json`       | ✅ Plugin manifest                      | —                           |
 | `.mcp.json`         | ✅ Auto-detected MCP config             | ✅ Auto-detected MCP config |
 | `CLAUDE.md`         | ✅ Read as instructions (project-level) | ✅ Read as instructions     |
-| `.github/agents/`   | ✅ Agent definitions                    | —                           |
-| `.github/skills/`   | ✅ Skill definitions                    | —                           |
+| `agents/`           | ✅ Agent definitions                    | —                           |
+| `skills/`           | ✅ Skill definitions                    | —                           |
 | `.claude/commands/` | ✅ Loaded as commands via plugin        | ✅ Slash commands           |
 | `.vscode/mcp.json`  | ✅ VS Code workspace config             | —                           |
 

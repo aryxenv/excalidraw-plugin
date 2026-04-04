@@ -10,8 +10,8 @@
     "visualization",
     "mcp"
   ],
-  "agents": ".github/agents/",
-  "skills": [".github/skills/"],
+  "agents": "agents/",
+  "skills": ["skills/"],
   "commands": ".claude/commands/",
-  "mcpServers": ".mcp.json"
+  "mcpServers": "./.mcp.json"
 }
