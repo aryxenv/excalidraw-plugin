@@ -1,0 +1,13 @@
+{
+  "name": "excalidraw-tools",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SVG-to-PNG export tooling for Excalidraw architecture diagrams",
+  "type": "commonjs",
+  "scripts": {
+    "export": "node scripts/svg-to-png.js"
+  },
+  "dependencies": {
+    "@resvg/resvg-js": "^2.6.2"
+  }
+}
