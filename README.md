@@ -4,12 +4,12 @@ A plugin that adds Excalidraw architecture diagramming capabilities to your AI c
 
 ## What's Included
 
-| Component | Description |
-|-----------|-------------|
-| **Diagrammer Agent** | Researches your codebase, then creates accurate, grounded diagrams |
-| **Excalidraw Diagrams Skill** | Step-by-step procedures for creating, exporting, and embedding diagrams |
-| **Excalidraw MCP Server** | Tools for programmatic diagram creation (`create_view`, `export_scene`, etc.) |
-| **SVG-to-PNG Export** | Dark-mode PNG conversion via `@resvg/resvg-js` |
+| Component                     | Description                                                                   |
+| ----------------------------- | ----------------------------------------------------------------------------- |
+| **Diagrammer Agent**          | Researches your codebase, then creates accurate, grounded diagrams            |
+| **Excalidraw Diagrams Skill** | Step-by-step procedures for creating, exporting, and embedding diagrams       |
+| **Excalidraw MCP Server**     | Tools for programmatic diagram creation (`create_view`, `export_scene`, etc.) |
+| **SVG-to-PNG Export**         | Dark-mode PNG conversion via `@resvg/resvg-js`                                |
 
 ## Installation
 
@@ -18,16 +18,17 @@ A plugin that adds Excalidraw architecture diagramming capabilities to your AI c
 Install directly from the repository:
 
 ```bash
-copilot plugin install OWNER/REPO
+copilot plugin install aryxenv/excalidraw-plugin
 ```
 
 Or from within an interactive session:
 
 ```
-/plugin install OWNER/REPO
+/plugin install aryxenv/excalidraw-plugin
 ```
 
 After installation:
+
 - The **diagrammer** agent is available via `/agent`
 - The **excalidraw-diagrams** skill is auto-loaded
 - The **excalidraw** MCP server tools are available
@@ -38,6 +39,7 @@ After installation:
 ### Claude Code
 
 Clone or add this repository to your project. Claude Code automatically detects:
+
 - `CLAUDE.md` — project instructions with diagramming guidance
 - `.mcp.json` — Excalidraw MCP server configuration
 - `.claude/commands/diagram.md` — slash command (`/project:diagram`)
@@ -55,7 +57,7 @@ Copy the relevant files into your project:
 1. **MCP config** — Copy `.mcp.json` to your project root
 2. **Agent** — Copy `.github/agents/diagrammer.agent.md`
 3. **Skill** — Copy `.github/skills/excalidraw-diagrams/` directory
-4. **Export tools** *(optional)* — Copy the `excalidraw/` directory, then run `cd excalidraw && npm install` for custom dark-mode PNG export
+4. **Export tools** _(optional)_ — Copy the `excalidraw/` directory, then run `cd excalidraw && npm install` for custom dark-mode PNG export
 
 ## Usage
 
@@ -66,6 +68,7 @@ In Copilot CLI, select the diagrammer agent via `/agent`, then describe what you
 > Create an architecture diagram of the API layer showing all endpoints, the database, and external service connections.
 
 The agent will:
+
 1. Research your codebase to find real components
 2. Plan the diagram layout with you
 3. Create it using Excalidraw MCP tools
@@ -116,15 +119,15 @@ cd excalidraw && node scripts/svg-to-png.js diagrams/export/my-diagram.svg
 
 This plugin works across tools because both ecosystems share conventions:
 
-| File | Copilot CLI | Claude Code |
-|------|-------------|-------------|
-| `plugin.json` | ✅ Plugin manifest | — |
-| `.mcp.json` | ✅ Auto-detected MCP config | ✅ Auto-detected MCP config |
-| `CLAUDE.md` | ✅ Read as instructions (project-level) | ✅ Read as instructions |
-| `.github/agents/` | ✅ Agent definitions | — |
-| `.github/skills/` | ✅ Skill definitions | — |
-| `.claude/commands/` | ✅ Loaded as commands via plugin | ✅ Slash commands |
-| `.vscode/mcp.json` | ✅ VS Code workspace config | — |
+| File                | Copilot CLI                             | Claude Code                 |
+| ------------------- | --------------------------------------- | --------------------------- |
+| `plugin.json`       | ✅ Plugin manifest                      | —                           |
+| `.mcp.json`         | ✅ Auto-detected MCP config             | ✅ Auto-detected MCP config |
+| `CLAUDE.md`         | ✅ Read as instructions (project-level) | ✅ Read as instructions     |
+| `.github/agents/`   | ✅ Agent definitions                    | —                           |
+| `.github/skills/`   | ✅ Skill definitions                    | —                           |
+| `.claude/commands/` | ✅ Loaded as commands via plugin        | ✅ Slash commands           |
+| `.vscode/mcp.json`  | ✅ VS Code workspace config             | —                           |
 
 > **MCP config note:** `.mcp.json` uses cross-platform `npx` and the standard `mcpServers` format. `.vscode/mcp.json` uses Windows-specific `npx.cmd` and the VS Code `servers` format. Both configure the same `excalidraw-mcp-server`. When using plugin install, `.mcp.json` takes precedence.
 
