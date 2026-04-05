@@ -112,7 +112,3 @@ This plugin works across tools because both ecosystems share conventions:
 | `.vscode/mcp.json`  | ✅ VS Code workspace config             | —                           |
 
 > **MCP config note:** `.mcp.json` uses cross-platform `npx` and the standard `mcpServers` format. `.vscode/mcp.json` uses Windows-specific `npx.cmd` and the VS Code `servers` format. Both configure the same `excalidraw-mcp-server`. When using plugin install, `.mcp.json` takes precedence.
-
-## License
-
-MIT
