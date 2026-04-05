@@ -1,5 +1,8 @@
 # Excalidraw Diagrams Plugin
 
+> [!NOTE]
+> Personally I use [excalidraw-workflow](https://github.com/aryxenv/excalidraw-workflow), which includes custom dark mode script layer which is an extra step that builds on top of the existing excalidraw-mcp. Custom logic is not possible to add through a plugin (yet), hence why it's a separate project.
+
 A plugin that adds Excalidraw architecture diagramming capabilities to your AI coding agent. Works with **GitHub Copilot CLI** and **Claude Code**.
 
 ## What's Included
